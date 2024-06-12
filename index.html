@@ -62,6 +62,7 @@
     <hr/>
 
     <h2 id = "real_world">Sports Environments</h2>
+    <p>In this section, we provide a collage of the policies trained using our sports environments and the preliminary reward designs.  </p>
      <table
         style="
           width: 100%;
@@ -106,13 +107,13 @@
           </tr>
 
           <td>
-              <center>Table Tennis</center>
+              <center> <b>Table Tennis</b> </center>
             </td>
             <td>
-              <center>Tennis</center>
+              <center><b>Tennis</b></center>
             </td>
             <td>
-              <center>Boxing</center>
+              <center><b>Boxing</b></center>
             </td>
         </tbody>
       </table>
@@ -164,13 +165,13 @@
           </tr>
 
           <td>
-              <center>Fencing</center>
+              <center><b>Fencing</b></center>
             </td>
             <td>
-              <center>Penalty Kick</center>
+              <center><b>Penalty Kick</b></center>
             </td>
             <td>
-              <center>Free Throws</center>
+              <center><b>Free Throws</b></center>
             </td>
         </tbody>
       </table>
@@ -211,10 +212,10 @@
           </tr>
 
           <td>
-              <center>Soccer 1v1</center>
+              <center><b>Soccer 1v1</b></center>
             </td>
             <td>
-              <center>Soccer 2v2</center>
+              <center><b>Soccer 2v2</b></center>
             </td>
         </tbody>
       </table>
@@ -255,10 +256,10 @@
           </tr>
 
           <td>
-              <center>Javelin</center>
+              <center><b>Javelin</b></center>
             </td>
             <td>
-              <center>Golf</center>
+              <center><b>Golf</b></center>
             </td>
         </tbody>
       </table>
@@ -310,13 +311,13 @@
           </tr>
 
           <td>
-              <center>High Jump</center>
+              <center><b>High Jump</b></center>
             </td>
             <td>
-              <center>Long Jump</center>
+              <center><b>Long Jump</b></center>
             </td>
             <td>
-              <center>Hurdle</center>
+              <center><b>Hurdle</b></center>
             </td>
 
         </tbody>
@@ -327,7 +328,11 @@
       
 
       <h2 id = "real_world">Baseline Comparisons</h2>
+      <p>In this section, we provide visual comparisons of baseline methods (PPO-only/AMP/PULSE). </p>
       <h3 id = "highjump_baselines">High Jump</h3>
+      <p>For high jump, we can see that using PPO without any motion prior will yield a inhuman jumping motion. AMP, due to the task difficulty and no specific high jump motion in AMASS, decides to ignore the task reward,  only optimize the discriminator reward, and stand still. 
+        Using motor skills learned from AMASS, surprisingly, PULSE can discover the Fosbury way of high jump. 
+          </p>
     <table
         style="
           width: 100%;
@@ -385,6 +390,9 @@
       </table>
 
       <h3 id = "longjump_baselines">Long Jump</h3>
+      <p>For long jump, we can see that using PPO without any motion prior will yield a inhuman motion. AMP, due to the task difficulty and no specific long jump motion in AMASS, decides to ignore the task reward,  only optimize the discriminator reward, and stand still. 
+        Using motor skills learned from AMASS, PULSE can long jump with human-like motion. 
+          </p>
        <table
         style="
           width: 100%;
@@ -442,6 +450,9 @@
       </table>
 
      <h3 id = "hurdle_baselines">Hurdling</h3>
+     <p>For hurdling, we can see that using PPO without any motion prior will yield a inhuman motion. AMP, due to the task difficulty and no specific hurdling motion in AMASS, decides to ignore the task reward,  only optimize the discriminator reward, and stand still. 
+        Using motor skills learned from AMASS, PULSE can cross hurdles with human-like motion. 
+          </p>
        <table
         style="
           width: 100%;
@@ -500,6 +511,9 @@
 
 
     <h3 id = "hurdle_baselines">Javelin</h3>
+    <p>For Javelin throw, we can see that using PPO without any motion prior will yield a inhuman motion. AMP, even though with the throwing motion from video, optimize discriminator reward (with the swinging hand motion) and fails to throw. 
+        Using motor skills learned from AMASS, PULSE can throw using human-like motion, and even learns to jump to get gain momentum. 
+          </p>
        <table
         style="
           width: 100%;
@@ -559,6 +573,9 @@
 
       
       <h3 id = "hurdle_baselines">Golf</h3>
+      <p>For golfing, we can see that using PPO without any motion prior will yield a inhuman motion (kicking the ball with the pelvis block). AMP, even though with the motion from video, optimize discriminator only task reward and ignores the discriminator reward (another possible failure mode). 
+        PULSE can kick the golf ball using human-like motion, but PULSE + AMP uses more golf-like motion with the AMP's style guidance. 
+          </p>
        <table
         style="
           width: 100%;
@@ -628,6 +645,9 @@
       </table>
 
         <h3 id = "hurdle_baselines">Tennis</h3>
+        <p>For tennis, PPO without any motion prior will yield inhuman swinging motion. AMP will use tennis like motion when not hitting the ball, but when trying to hit the ball, inhuman behavior surfaces. This is another symptom of 
+            the disagreement between task and discriminator reward. PULSE can hit the ball using human-like motion and PULSE+AMP as well. 
+          </p>
        <table
         style="
           width: 100%;
@@ -700,6 +720,9 @@
       </table>
 
         <h3 id = "hurdle_baselines">Table Tennis</h3>
+        <p>For table tennis, PPO without any motion prior will yield inhuman swinging motion. AMP will use ping-pong like motion when not hitting the ball, but when trying to hit the ball, inhuman behavior surfaces. This is another symptom of 
+            the disagreement between task and discriminator reward. PULSE can hit the ball using human-like motion, but PULSE + AMP uses more table-tennis-like motion with the AMP's style guidance. 
+          </p>
        <table
         style="
           width: 100%;
@@ -769,6 +792,9 @@
       </table>
 
       <h3 id = "hurdle_baselines">Free Throw</h3>
+      <p>For free throw, PPO without any motion prior and AMP both fails to learn proper free throw motion. This is due to the difficulty of learning human object interaction from scratch. The search space without a motion prior can be too big due to 
+        the existence of the object. For AMP, the motion we use contain many sequences of basketball motion, but not solely free throws. Thus, the policy also fails to learn. PULSE and PULSE + AMP can both achieve high free throw success rate using human-like motion. 
+          </p>
        <table
         style="
           width: 100%;
@@ -838,7 +864,10 @@
       </table>
 
 
- <h3 id = "hurdle_baselines">Penalty Kicks</h3>
+    <h3 id = "hurdle_baselines">Penalty Kicks</h3>
+    <p>For penalty kicks, PPO without any motion prior and AMP both fails to learn proper free throw motion. This is due to the difficulty of learning human object interaction from scratch. The reward design also plays a role where PPO is exploiting the 
+        player-to-ball reward instead of learning the kicking motion. PULSE and PULSE + AMP can both learn to push the ball. However, PULSE learns to kick with a human-like motion, but PULSE+AMP suffers from the conflict between style and task reward. 
+          </p>
        <table
         style="
           width: 100%;
@@ -908,7 +937,96 @@
       </table>
 
 
-      
+    <h2 id = "data">Data from Videos</h2>      
+      <p>In this section, we provide visualization of the motion data extracted from video using our pose estimation then simulation refinement pipeline. We can see that our extracted motion is physically plausible and describes a unique style of motion for that sport.</p>
+       <table
+        style="
+          width: 100%;
+          border: 0px;
+          border-spacing: 5px 0px;
+          border-collapse: separate;
+          margin-right: auto;
+          margin-left: auto;
+          padding-bottom: 20px;
+        "
+      >
+
+        <tbody>
+          <tr class="block_videos">
+            <td>
+              <video width="100%" height="auto" muted autoplay loop controls>
+                <source
+                  src="videos/soccer_data.mp4#t=0.001"
+                  type="video/mp4 "
+                />
+                Your browser does not support the video tag.
+              </video>
+            </td>
+            <td>
+              <video width="100%" height="auto" muted autoplay loop controls>
+                <source
+                  src="videos/tennis_data.mp4#t=0.001"
+                  type="video/mp4 "
+                />
+                Your browser does not support the video tag.
+              </video>
+            </td>
+
+          </tr>
+
+          <td>
+              <center>Soccer</center>
+            </td>
+            <td>
+              <center>Tennis</center>
+            </td>
+        </tbody>
+      </table>
+
+      <table
+        style="
+          width: 100%;
+          border: 0px;
+          border-spacing: 5px 0px;
+          border-collapse: separate;
+          margin-right: auto;
+          margin-left: auto;
+          padding-bottom: 20px;
+        "
+      >
+
+        <tbody>
+          <tr class="block_videos">
+            <td>
+              <video width="100%" height="auto" muted autoplay loop controls>
+                <source
+                  src="videos/golf_data.mp4#t=0.001"
+                  type="video/mp4 "
+                />
+                Your browser does not support the video tag.
+              </video>
+            </td>
+            <td>
+              <video width="100%" height="auto" muted autoplay loop controls>
+                <source
+                  src="videos/boxing_data.mp4#t=0.001"
+                  type="video/mp4 "
+                />
+                Your browser does not support the video tag.
+              </video>
+            </td>
+
+          </tr>
+
+          <td>
+              <center>Golf</center>
+            </td>
+            <td>
+              <center>Boxing</center>
+            </td>
+        </tbody>
+      </table>
+
     
   </body>
 </html>
