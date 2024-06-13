@@ -201,7 +201,7 @@
               <center><b>Penalty Kick</b></center>
             </td>
             <td>
-              <center><b>Free Throws</b></center>
+              <center><b>Free Throw</b></center>
             </td>
         </tbody>
       </table>
@@ -358,7 +358,7 @@
  <h2 id = "data">Data from Videos</h2>      
       <p>
         Our SMPL based humanoid enables us to directly use pose estimated from videos as human demonstration data. 
-        In this section, we provide visualization of the motion data extracted from video using our pose estimation then simulation refinement pipeline. We can see that our extracted motion is physically plausible and describes a unique style of motion for that sport.</p>
+        Here, we provide sample visualization of the motion data extracted from video using our pose estimation then simulation refinement pipeline. We can see that our extracted motion is physically plausible and describes a unique style of motion for that sport.</p>
        <table
         style="
           width: 100%;
@@ -448,8 +448,8 @@
         </tbody>
       </table>
       <h3 id = "abla_data">Ablations on Using Motion Imitation for Physically Plausible Refinement</h3>      
-      <p>In this section, we ablate the importance of using Motion Imitation (PHC) for pose refinement when acquiring data from videos. We use two sequences of motion demonstration for AMP prior, one with refinement and one without. Using the demonstration data, 
-      we train PULSE+AMP model to show that the quality of the demonstration data is important, and our refinement step leads to better results. </p>
+      <p>In this section, we ablate the importance of using a motion imitator (PHC) for pose refinement when acquiring data from videos. Here, we test two sequences of motion demonstration, one with refinement and one without. 
+      We train PULSE+AMP model using the these two sequences as prior, and  show that the quality of the demonstration data is important. Our refinement step leads to a better motion prior. </p>
        <table
         style="
           width: 100%;
@@ -486,7 +486,7 @@
           </tr>
 
           <td>
-              <center>W/O  Refinement</center>
+              <center>W/o  Refinement</center>
             </td>
             <td>
               <center>W/  Refinement</center>
@@ -495,9 +495,12 @@
       </table>
 
       <h2 id = "comparison">Baseline Comparisons</h2>
-      <p>In this section, we provide visual comparisons of baseline methods (PPO-only/AMP/PULSE). </p>
+      <p>In this section, we provide visual comparisons of baseline methods (PPO-only/AMP/PULSE). For sports that have accompanied human demonstration data from videos, we also provide PULSE+AMP as a baseline.
+
+
+      </p>
       <h3 id = "highjump_baselines">High Jump</h3>
-      <p>For high jump, we can see that using PPO without any motion prior will yield a inhuman jumping motion. AMP, due to the task difficulty and no specific high jump motion in AMASS, decides to ignore the task reward,  only optimize the discriminator reward, and stand still. 
+      <p>For high jump, we can see that using PPO without any motion prior will yield inhuman jumping motion. AMP, due to the task difficulty and no specific high jump motion in AMASS, decides to ignore the task reward,  only optimize the discriminator reward, and stand still. 
         Using motor skills learned from AMASS, surprisingly, PULSE can discover the Fosbury way of high jump. 
           </p>
     <table
@@ -557,7 +560,7 @@
       </table>
 
       <h3 id = "longjump_baselines">Long Jump</h3>
-      <p>For long jump, we can see that using PPO without any motion prior will yield a inhuman motion. AMP, due to the task difficulty and no specific long jump motion in AMASS, decides to ignore the task reward,  only optimize the discriminator reward, and stand still. 
+      <p>For long jump, we can see that using PPO without any motion prior will lead to inhuman motion. AMP, due to the task difficulty and no specific long jump motion in AMASS, decides to ignore the task reward,  only optimize the discriminator reward, and stand still. 
         Using motor skills learned from AMASS, PULSE can long jump with human-like motion. 
           </p>
        <table
@@ -617,7 +620,7 @@
       </table>
 
      <h3 id = "hurdle_baselines">Hurdling</h3>
-     <p>For hurdling, we can see that using PPO without any motion prior will yield a inhuman motion. AMP, due to the task difficulty and no specific hurdling motion in AMASS, decides to ignore the task reward,  only optimize the discriminator reward, and stand still. 
+     <p>For hurdling, we can see that using PPO without any motion prior will yield inhuman motion. AMP, due to the task difficulty and no specific hurdling motion in AMASS, decides to ignore the task reward,  only optimize the discriminator reward, and stand still. 
         Using motor skills learned from AMASS, PULSE can cross hurdles with human-like motion. 
           </p>
        <table
@@ -678,8 +681,8 @@
 
 
     <h3 id = "javelin_baselines">Javelin</h3>
-    <p>For Javelin throw, we can see that using PPO without any motion prior will yield a inhuman motion. AMP, even though with the throwing motion from video, optimize discriminator reward (with the swinging hand motion) and fails to throw. 
-        Using motor skills learned from AMASS, PULSE can throw using human-like motion, and even learns to jump to get gain momentum. 
+    <p>For Javelin throw, we can see that using PPO without any motion prior will yield inhuman motion. AMP, even though with the throwing motion from video, prioritizes discriminator reward (with the swinging hand motion) and fails to throw. 
+        Using motor skills learned from AMASS, PULSE can throw using human-like motion, and even learns to jump to gain momentum. 
           </p>
        <table
         style="
@@ -740,8 +743,8 @@
 
       
       <h3 id = "golf_baselines">Golf</h3>
-      <p>For golfing, we can see that using PPO without any motion prior will yield a inhuman motion (kicking the ball with the pelvis block). AMP, even though with the motion from video, optimize discriminator only task reward and ignores the discriminator reward (another possible failure mode). 
-        PULSE can kick the golf ball using human-like motion, but PULSE + AMP uses more golf-like motion with the AMP's style guidance. 
+      <p>For golfing, PPO without any motion prior will yield inhuman motion (kicking the ball with the pelvis block). AMP, even though with the motion from video, optimize only the task reward and ignores the discriminator reward (another possible failure mode). 
+        PULSE can kick the golf ball using human-like motion, but PULSE + AMP uses more golf-like motion due to the style guidance from human demonstration.
           </p>
        <table
         style="
@@ -813,7 +816,7 @@
 
         <h3 id = "tennis_baselines">Tennis</h3>
         <p>For tennis, PPO without any motion prior will yield inhuman swinging motion. AMP will use tennis like motion when not hitting the ball, but when trying to hit the ball, inhuman behavior surfaces. This is another symptom of 
-            the disagreement between task and discriminator reward. PULSE can hit the ball using human-like motion and PULSE+AMP as well. 
+            the disagreement between task and discriminator reward. PULSE and PULSE+AMP can hit the ball using human-like motion. 
           </p>
        <table
         style="
@@ -887,8 +890,7 @@
       </table>
 
         <h3 id = "tabletennis_baselines">Table Tennis</h3>
-        <p>For table tennis, PPO without any motion prior will yield inhuman swinging motion. AMP will use ping-pong like motion when not hitting the ball, but when trying to hit the ball, inhuman behavior surfaces. This is another symptom of 
-            the disagreement between task and discriminator reward. PULSE can hit the ball using human-like motion, but PULSE + AMP uses more table-tennis-like motion with the AMP's style guidance. 
+        <p>For table tennis, PPO without any motion prior results in inhuman swinging motion. AMP uses ping-pong like motion when not hitting the ball, but when trying to hit the ball, uses inhuman behavior. PULSE can hit the ball using human-like motion, but PULSE + AMP uses more table-tennis-like motion due to the style guidance from human demonstration.
           </p>
        <table
         style="
@@ -960,7 +962,7 @@
 
       <h3 id = "freethrow_baselines">Free Throw</h3>
       <p>For free throw, PPO without any motion prior and AMP both fails to learn proper free throw motion. This is due to the difficulty of learning human object interaction from scratch. The search space without a motion prior can be too big due to 
-        the existence of the object. For AMP, the motion we use contain many sequences of basketball motion, but not solely free throws. Thus, the policy also fails to learn. PULSE and PULSE + AMP can both achieve high free throw success rate using human-like motion. 
+        the existence of the object. For AMP, the motion we use contain many sequences of basketball motion, but not solely free throw. Thus, the policy also fails to learn. PULSE and PULSE + AMP can both achieve high free throw success rate using human-like motion. 
           </p>
        <table
         style="
